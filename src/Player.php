@@ -7,11 +7,14 @@ use Symfony\Component\Process\Process;
 
 class Player
 {
-    const BASIC_DIR = '/var/www/html/sounds/basics';
-    const RECORDS_DIR = '/var/www/html/sounds/records';
+    const ROOT_PATH = '/var/www/html';
+
+    const BASIC_DIR = self::ROOT_PATH.'/sounds/basics';
+    const RECORDS_DIR = self::ROOT_PATH.'/sounds/records';
+    const PLAYED_FILE = self::ROOT_PATH.'/data/played.txt';
 
     const COMMAND = 'omxplayer -o local';
-    const PLAYED_FILE = 'data/played.txt';
+    const MAX_PLAYED = 50;
 
     public function playRandom()
     {
@@ -49,11 +52,11 @@ class Player
     {
         $played = file(self::PLAYED_FILE);
 
-        if (count($played) >= 50) {
+        if (count($played) >= self::MAX_PLAYED) {
             unset($played[0]);
         }
         $played[] = $file;
 
-        file_put_contents(self::PLAYED_FILE, $played);
+        file_put_contents(self::PLAYED_FILE, implode("\n", $played));
     }
 }
