@@ -53,7 +53,7 @@ class Player
         $played = file(self::PLAYED_FILE, FILE_IGNORE_NEW_LINES);
 
         if (count($played) >= self::MAX_PLAYED) {
-            unset($played[0]);̣
+            unset($played[0]);
         }
 
         $played[] = $file;
