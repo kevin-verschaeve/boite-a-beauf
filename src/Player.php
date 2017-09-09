@@ -7,8 +7,8 @@ use Symfony\Component\Process\Process;
 
 class Player
 {
-    const BASIC_DIR = './sounds/basics';
-    const RECORDS_DIR = './sounds/records';
+    const BASIC_DIR = '/var/www/html/sounds/basics';
+    const RECORDS_DIR = '/var/www/html/sounds/records';
 
     const COMMAND = 'omxplayer -o local';
 
