@@ -1,6 +1,6 @@
 vendor
 
-sounds/basics
+sounds/basics/*
 !sounds/basics/.gitkeep
-sounds/records
+sounds/records/*
 !sounds/records/.gitkeep

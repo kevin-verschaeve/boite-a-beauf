@@ -10,7 +10,7 @@ class Player
     const BASIC_DIR = './sounds/basics';
     const RECORDS_DIR = './sounds/records';
 
-    const COMMAND = 'play'; // omxplayer for rpi
+    const COMMAND = 'omxplayer -o local';
 
     public function playRandom()
     {
