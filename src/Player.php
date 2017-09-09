@@ -34,7 +34,7 @@ class Player
         $finder = new Finder();
         $finder->files()->in([self::BASIC_DIR, self::RECORDS_DIR]);
 
-        $played = file(self::PLAYED_FILE);
+        $played = file(self::PLAYED_FILE, FILE_IGNORE_NEW_LINES);
 
         $files = [];
         foreach ($finder as $file) {
@@ -50,13 +50,14 @@ class Player
 
     private function addToPlayed($file)
     {
-        $played = file(self::PLAYED_FILE);
+        $played = file(self::PLAYED_FILE, FILE_IGNORE_NEW_LINES);
 
         if (count($played) >= self::MAX_PLAYED) {
-            unset($played[0]);
+            unset($played[0]);̣
         }
+
         $played[] = $file;
 
-        file_put_contents(self::PLAYED_FILE, implode("\n", $played));
+        file_put_contents(self::PLAYED_FILE, implode("\r\n", $played));
     }
 }
