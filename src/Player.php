@@ -7,11 +7,9 @@ use Symfony\Component\Process\Process;
 
 class Player
 {
-    const ROOT_PATH = '/var/www/html';
-
-    const BASIC_DIR = self::ROOT_PATH.'/sounds/basics';
-    const RECORDS_DIR = self::ROOT_PATH.'/sounds/records';
-    const PLAYED_FILE = self::ROOT_PATH.'/data/played.txt';
+    const BASIC_DIR = '/sounds/basics';
+    const RECORDS_DIR = '/sounds/records';
+    const PLAYED_FILE = '/data/played.txt';
 
     const COMMAND = 'omxplayer -o local';
     const MAX_PLAYED = 50;
@@ -32,9 +30,9 @@ class Player
     private function findRandomFile()
     {
         $finder = new Finder();
-        $finder->files()->in([self::BASIC_DIR, self::RECORDS_DIR]);
+        $finder->files()->in([$this->getFullPath(self::BASIC_DIR), $this->getFullPath(self::RECORDS_DIR)]);
 
-        $played = file(self::PLAYED_FILE, FILE_IGNORE_NEW_LINES);
+        $played = file($this->getFullPath(self::PLAYED_FILE), FILE_IGNORE_NEW_LINES);
 
         $files = [];
         foreach ($finder as $file) {
@@ -50,7 +48,7 @@ class Player
 
     private function addToPlayed($file)
     {
-        $played = file(self::PLAYED_FILE, FILE_IGNORE_NEW_LINES);
+        $played = file($this->getFullPath(self::PLAYED_FILE), FILE_IGNORE_NEW_LINES);
 
         if (count($played) >= self::MAX_PLAYED) {
             unset($played[0]);
@@ -58,6 +56,11 @@ class Player
 
         $played[] = $file;
 
-        file_put_contents(self::PLAYED_FILE, implode("\r\n", $played));
+        file_put_contents($this->getFullPath(self::PLAYED_FILE), implode("\r\n", $played));
+    }
+
+    private function getFullPath($path)
+    {
+        return dirname(__DIR__).$path;
     }
 }
