@@ -36,7 +36,7 @@ class Player
 
         $files = [];
         foreach ($finder as $file) {
-            if (in_array($file, $played, true)) {
+            if (in_array($file->getPathname(), $played, true)) {
                 continue;
             }
 
@@ -49,14 +49,10 @@ class Player
     private function addToPlayed($file)
     {
         $played = file($this->getFullPath(self::PLAYED_FILE), FILE_IGNORE_NEW_LINES);
-
-        if (count($played) >= self::MAX_PLAYED) {
-            unset($played[0]);
-        }
-
+        $played = array_slice($played, -self::MAX_PLAYED + 1);
         $played[] = $file;
 
-        file_put_contents($this->getFullPath(self::PLAYED_FILE), implode("\r\n", $played));
+        file_put_contents($this->getFullPath(self::PLAYED_FILE), implode("\n", $played));
     }
 
     private function getFullPath($path)
