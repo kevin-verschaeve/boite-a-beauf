@@ -27,12 +27,12 @@ class Player
         $process->run();
     }
 
-    private function findRandomFile()
+    public function findAll()
     {
         $finder = new Finder();
-        $finder->files()->in([$this->getFullPath(self::BASIC_DIR), $this->getFullPath(self::RECORDS_DIR)]);
+        $finder->files()->in([Utils::getFullPath(self::BASIC_DIR), Utils::getFullPath(self::RECORDS_DIR)]);
 
-        $played = file($this->getFullPath(self::PLAYED_FILE), FILE_IGNORE_NEW_LINES);
+        $played = file(Utils::getFullPath(self::PLAYED_FILE), FILE_IGNORE_NEW_LINES);
 
         $files = [];
         foreach ($finder as $file) {
@@ -43,20 +43,22 @@ class Player
             $files[] = $file->getPathname();
         }
 
+        return $files;
+    }
+
+    private function findRandomFile()
+    {
+        $files = $this->findAll();
+
         return $files[array_rand($files)];
     }
 
     private function addToPlayed($file)
     {
-        $played = file($this->getFullPath(self::PLAYED_FILE), FILE_IGNORE_NEW_LINES);
+        $played = file(Utils::getFullPath(self::PLAYED_FILE), FILE_IGNORE_NEW_LINES);
         $played = array_slice($played, -self::MAX_PLAYED + 1);
         $played[] = $file;
 
-        file_put_contents($this->getFullPath(self::PLAYED_FILE), implode("\n", $played));
-    }
-
-    private function getFullPath($path)
-    {
-        return dirname(__DIR__).$path;
+        file_put_contents(Utils::getFullPath(self::PLAYED_FILE), implode("\n", $played));
     }
 }
