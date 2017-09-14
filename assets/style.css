@@ -1,24 +1,57 @@
+@font-face {
+    font-family: 'Fira Sans';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Fira Sans Regular'),
+        local('FiraSans-Regular'),
+        url('Fira_Sans.ttf') format('truetype')
+    ;
+}
+
+
+body {
+    font-family: 'Fira Sans', 'Helvetica', sans-serif;
+}
 h1 {
     text-align: center;
 }
-ul {
-    list-style-type: none;
-}
-li {
-    display: inline-block;
-    margin: 0 4px 10px 6px;
+.wrap {
+    margin-bottom: 20px;
+    padding: 0 15px;
 }
 a {
-    color: #FFF;
-    text-decoration: none;
-    display: block;
-    background: #00D1B5;
-    margin: 10px;
-    padding: 16px;
-    border-radius: 10px;
-    box-shadow: 0 7px 0 0 #09C0A8, 0px 0px 20px 0px #bbb;
-    transition: all 0.2s;
-}
-a:hover {
-    box-shadow: 0 10px 0 0 #09C0A8;
+    padding: 20px 10px;
+    background-color: transparent;
+    color: #00d1b2;
+
+    -webkit-appearance: none;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    border: 1px solid #00d1b2;
+    border-radius: 3px;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    font-size: 1rem;
+    height: 3em;
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    line-height: 1.5;
+    padding-bottom: calc(0.375em - 1px);
+    padding-top: calc(0.375em - 1px);
+    position: relative;
+    vertical-align: center;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor: pointer;
+    padding-left: 0.75em;
+    padding-right: 0.75em;
+    word-wrap: break-word;
 }
