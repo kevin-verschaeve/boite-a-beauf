@@ -31,8 +31,7 @@ class Player
     {
         $finder = new Finder();
         $finder->files()->in([Utils::getFullPath(self::BASIC_DIR), Utils::getFullPath(self::RECORDS_DIR)]);
-
-	$played = true === $ignorePlayed ? file(Utils::getFullPath(self::PLAYED_FILE), FILE_IGNORE_NEW_LINES) : [];
+        $played = true === $ignorePlayed ? file(Utils::getFullPath(self::PLAYED_FILE), FILE_IGNORE_NEW_LINES) : [];
 
         $files = [];
         foreach ($finder as $file) {

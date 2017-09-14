@@ -12,17 +12,20 @@ sort($files);
 
 <html>
 <head>
+    <title>La boite à beauf</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="assets/lib/basscss.min.css">
     <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
-    <div class="mx-auto max-width-4">
-        <h1>La boite a beauf</h1>
+    <div class="mx-auto max-width-5">
+        <h1 class="p3">La boite à beauf</h1>
         <div class="flex flex-wrap">
             <?php foreach ($files as $file) : ?>
-                <div class="sm-col-6 md-col-4 border-box wrap">
-                    <a href="#" class="js-play bold text-decoration-none center block" data-sound="<?php echo Utils::getPublicPath($file); ?>">
-                        <?php echo Utils::humanizePath($file); ?>
+                <div class="col-6 md-col-4 lg-col-3 border-box wrap">
+                    <a href="#" class="js-play bold text-decoration-none center block flex items-center justify-center" data-sound="<?php echo Utils::getPublicPath($file); ?>">
+                        <span><?php echo Utils::humanizePath($file); ?></span>
                     </a>
                 </div>
             <?php endforeach; ?>
