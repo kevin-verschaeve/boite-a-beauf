@@ -7,7 +7,7 @@ use BAB\Utils;
 
 $player = new Player();
 $files = $player->findAll();
-
+sort($files);
 ?>
 
 <html>
