@@ -20,7 +20,14 @@ sort($files);
 </head>
 <body>
     <div class="mx-auto max-width-5">
-        <h1 class="p3">La boite à beauf</h1>
+        <div class="flex flex-wrap">
+            <div class="col-12 sm-col-6 md-col-3 flex items-center justify-start pl2">
+                <button id="button-random" type="button" class="js-play-random justify-center bold">Random</button>
+            </div>
+            <div class="col-12 sm-col-6">
+                <h1 class="px2 py3">La boite à beauf</h1>
+            </div>
+        </div>
         <div class="flex flex-wrap">
             <?php foreach ($files as $file) : ?>
                 <div class="col-6 md-col-4 lg-col-3 border-box wrap">
@@ -32,7 +39,7 @@ sort($files);
         </div>
     </div>
 
-    <script src="assets/lib/jquery-3.2.1.slim.min.js"></script>
+    <script src="assets/lib/jquery-3.2.1.min.js"></script>
     <script src="assets/lib/soundjs-0.6.2.min.js"></script>
     <script src="assets/play.js"></script>
 </body>

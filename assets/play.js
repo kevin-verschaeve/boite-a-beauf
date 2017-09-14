@@ -9,6 +9,20 @@ $(function() {
         e.preventDefault();
         var path = $(this).data('sound');
 
+        playSound(path);
+    });
+
+    $('.js-play-random').on('click', function (e) {
+        // get all sounds list
+        var sounds = $('.js-play').map(function() {
+            return $(this).data('sound');
+        }).get();
+
+        // play array rand
+        playSound(sounds[Math.floor(Math.random() * sounds.length)]);
+    });
+
+    function playSound(path) {
         createjs.Sound.stop();
 
         // register sound if it is not
@@ -22,5 +36,5 @@ $(function() {
             interrupt: createjs.Sound.INTERRUPT_ANY,
             volume: 1
         });
-    });
+    }
 });

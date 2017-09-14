@@ -23,10 +23,6 @@ h1 {
     padding: 0 15px;
 }
 a {
-    align-items: center;
-    display: flex;
-    justify-content: center;
-
     padding: 20px 10px;
     background-color: #00d1b2;
     color: #FFF;
@@ -35,7 +31,6 @@ a {
     -webkit-appearance: none;
     -webkit-box-align: center;
     -ms-flex-align: center;
-    /*align-items: center;*/
     border: 1px solid #00d1b2;
     border-radius: 3px;
     display: -webkit-inline-box;
@@ -62,4 +57,17 @@ a {
 }
 a:hover {
     box-shadow: 0 6px 4px #168e7c;
+}
+
+#button-random {
+    padding: 20px 10px;
+    background-color: #b5211b;
+    color: #FFF;
+    box-shadow: 0 6px 0 #4f0002;
+    border: none;
+    cursor: pointer;
+    line-height: 1.5;
+    border-radius: 3px;
+    width: 91%;
+    font-size: 1rem;
 }
