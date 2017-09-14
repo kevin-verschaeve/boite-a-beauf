@@ -21,11 +21,14 @@ sort($files);
 <body>
     <div class="mx-auto max-width-5">
         <div class="flex flex-wrap">
-            <div class="col-12 sm-col-6 md-col-3 flex items-center justify-start pl2">
+            <div class="col-12 sm-col-6 md-col-3 flex items-center justify-start">
                 <button id="button-random" type="button" class="js-play-random justify-center bold">Random</button>
             </div>
-            <div class="col-12 sm-col-6">
+            <div class="col-12 sm-col-6 md-col-6">
                 <h1 class="px2 py3">La boite à beauf</h1>
+            </div>
+            <div class="col-12 md-col-3 flex items-center">
+                <input id="search" class="js-search py2 px1" placeholder="Chercher..." autofocus>
             </div>
         </div>
         <div class="flex flex-wrap">

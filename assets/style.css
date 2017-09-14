@@ -68,6 +68,15 @@ a:hover {
     cursor: pointer;
     line-height: 1.5;
     border-radius: 3px;
-    width: 91%;
+    width: 100%;
     font-size: 1rem;
+}
+
+#search {
+    line-height: 1.5em;
+    width: 100%;
+    font-size: 1.5em;
+    border-radius: 3px;
+    border: 1px solid #000;
+    color: #000;
 }
