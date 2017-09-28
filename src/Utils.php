@@ -11,7 +11,7 @@ class Utils
 
     public static function humanizePath($path)
     {
-        return ucwords(str_replace(['_', '-'], ' ', pathinfo($path, PATHINFO_FILENAME)));
+        return str_replace(['_', '-'], ' ', pathinfo($path, PATHINFO_FILENAME));
     }
 
     public static function getPublicPath($fullPath)

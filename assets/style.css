@@ -12,6 +12,10 @@
 body {
     font-family: 'Fira Sans', 'Helvetica', sans-serif;
 }
+body,
+button {
+    text-transform: uppercase;
+}
 .max-width-5 {
     max-width: 85rem;
 }
@@ -22,7 +26,7 @@ h1 {
     margin-bottom: 20px;
     padding: 0 15px;
 }
-a {
+.btn-sound {
     padding: 20px 10px;
     background-color: #00d1b2;
     color: #FFF;
@@ -33,9 +37,6 @@ a {
     -ms-flex-align: center;
     border: 1px solid #00d1b2;
     border-radius: 3px;
-    display: -webkit-inline-box;
-    display: -ms-inline-flexbox;
-    display: inline-flex;
     font-size: 1rem;
     height: 3em;
     -webkit-box-pack: start;
@@ -70,6 +71,21 @@ a:hover {
     border-radius: 3px;
     width: 100%;
     font-size: 1rem;
+    margin-right: 10px;
+}
+
+#button-record {
+    padding: 20px;
+    background-color: #49B5E8;
+    color: #FFF;
+    box-shadow: 0 6px 0 #398AB5;
+    border: none;
+    cursor: pointer;
+    line-height: 1.5;
+    border-radius: 3px;
+    width: 100%;
+    font-size: 1rem;
+    margin-left: 10px;
 }
 
 #search {
@@ -79,4 +95,75 @@ a:hover {
     border-radius: 3px;
     border: 1px solid #000;
     color: #000;
+}
+
+.alert {
+    padding: 20px;
+    color: #FFF;
+    font-weight: bold;
+    text-align: center;
+}
+
+.alert.success {
+    background-color: #168e7c
+}
+.alert.error {
+    background-color: #b5211b;
+}
+
+/* MODAL */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 40%;
+    text-align: center;
+    position: relative;
+}
+
+.modal-close {
+    color: #000;
+    font-size: 5em;
+    font-weight: bold;
+    position: absolute;
+    top: -15px;
+    right: 10px;
+    cursor: pointer;
+}
+
+/* RECORDER */
+#start,
+#stop,
+#upload {
+    padding: 20px;
+    background-color: #49B5E8;
+    color: #FFF;
+    box-shadow: 0 6px 0 #398AB5;
+    border: none;
+    cursor: pointer;
+    line-height: 1.5;
+    border-radius: 3px;
+    font-size: 1rem;
+    text-decoration: none;
+}
+#sound-name {
+    padding: 20px;
+    width: 100%;
+}
+#recording {
+    display: none;
 }
