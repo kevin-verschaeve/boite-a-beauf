@@ -17,7 +17,7 @@ sort($files);
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="assets/lib/basscss.min.css">
-    <link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" href="assets/style.css?v=<?php echo uniqid(); ?>">
 </head>
 <body>
     <div class="mx-auto max-width-5">
