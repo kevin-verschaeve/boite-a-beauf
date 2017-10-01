@@ -10,7 +10,7 @@ $(function() {
     }).get();
 
     // register or play sound on button click
-    $('.js-play').on('click', function(e) {
+    $(document).on('click', '.js-play', function(e) {
         e.preventDefault();
         playSound($(this).data('sound'));
     });

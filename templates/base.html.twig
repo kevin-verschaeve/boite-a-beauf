@@ -1,0 +1,17 @@
+
+<html>
+<head>
+    <title>{% block title %}La boite à beauf{% endblock %}</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/assets/lib/basscss.min.css">
+    <link rel="stylesheet" href="/assets/style.css">
+    {% block css %}{% endblock %}
+</head>
+<body>
+<div class="mx-auto max-width-5">
+    {% block content %}{% endblock %}
+</div>
+{% block js %}{% endblock %}
+</body>
+</html>

@@ -31,6 +31,12 @@ $(function() {
 
         recorder = new MediaRecorder(stream);
         recorder.addEventListener('dataavailable', doRecord);
+    }).catch(function (error) {
+        $('#top').prepend($('<p/>', {
+            'class': 'alert error col-12',
+            text: 'Impossible d\'enregistrer un son. Message: "' + error + '"'
+        }));
+        $('#button-record').remove();
     });
 
     function startRecording() {
@@ -74,18 +80,16 @@ $(function() {
         }
 
         var formData = new FormData();
-        formData.append('sound', blob, name+'.ogg');
+        formData.append('sound', blob, name.trim() + '.ogg');
 
         $.post({
-            url: 'upload.php',
+            url: '/upload',
             type: 'POST',
             data: formData,
             processData: false,
             cache: false,
             contentType: false
         }).done(function(data) {
-            data = $.parseJSON(data);
-
             let cssClass = data.success === true ? 'success' : 'error';
             $('#upload-message').append($('<p/>', {
                 'class': 'alert ' + cssClass,
@@ -98,6 +102,11 @@ $(function() {
             });
 
             $modal.hide();
+            $('#sound-name').val('');
+
+            if (data.html) {
+                $('#sound-container').append(data.html);
+            }
         });
     }
 });

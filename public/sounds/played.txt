@@ -1,0 +1,4 @@
+/home/kevinverschaeve/perso/bab-flex/public/sounds/basics/le_poisson_le_petit_poisson.mp3
+/home/kevinverschaeve/perso/bab-flex/public/sounds/basics/17-jenveux.mp3
+/home/kevinverschaeve/perso/bab-flex/public/sounds/basics/le_poisson_le_petit_poisson.mp3
+/home/kevinverschaeve/perso/bab-flex/public/sounds/basics/le_poisson_le_petit_poisson.mp3

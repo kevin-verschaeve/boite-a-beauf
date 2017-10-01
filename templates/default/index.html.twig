@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+{% import 'macro/sound_button.html.twig' as macro %}
+
+{% block content %}
+    <div id="top" class="flex flex-wrap px2">
+        <div id="upload-message" class="col-12"></div>
+        <div class="col-6 sm-col-3 md-col-2 flex items-center justify-start">
+            <button id="button-random" type="button" class="js-play-random justify-center bold">Random</button>
+        </div>
+        <div class="col-6 sm-col-3 md-col-2 flex items-center justify-start">
+            <button id="button-record" type="button" class="justify-center bold">Enregistrer</button>
+        </div>
+
+        <div class="col-12 sm-col-6 md-col-5">
+            <h1 class="px2 py3">La boite à beauf</h1>
+        </div>
+        <div class="col-12 md-col-3 flex items-center">
+            <input id="search" class="js-search py2 px1" placeholder="Chercher..." autofocus>
+        </div>
+    </div>
+    <div id="sound-container" class="flex flex-wrap">
+        {% for sound in sounds %}
+            {{ macro.soundButton(sound.label, sound.publicPath) }}
+        {% endfor %}
+    </div>
+
+    {% include 'default/record_modal.html.twig' %}
+{% endblock %}
+
+{% block js %}
+    <script src="/assets/lib/jquery-3.2.1.min.js"></script>
+    <script src="/assets/lib/soundjs-0.6.2.min.js"></script>
+    <script src="/assets/play.js"></script>
+    <script src="/assets/record.js"></script>
+{% endblock %}
