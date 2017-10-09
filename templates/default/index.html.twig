@@ -20,7 +20,7 @@
     </div>
     <div id="sound-container" class="flex flex-wrap">
         {% for sound in sounds %}
-            {{ macro.soundButton(sound.label, sound.publicPath) }}
+            {{ macro.soundButton(sound) }}
         {% endfor %}
     </div>
 

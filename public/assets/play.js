@@ -1,7 +1,7 @@
 $(function() {
     // play sound when it is registered
     createjs.Sound.on('fileload', function(e) {
-        createjs.Sound.play(e.src);
+        doPlay(e.src);
     }, this);
 
     // get all sounds list
@@ -22,8 +22,9 @@ $(function() {
     });
 
     $('.js-search').on('keyup', function() {
-        var search = $(this).val();
-        var sound = '';
+        let search = $(this).val();
+        let sound = '';
+
         $('.wrap').show();
         $('.js-play').each(function() {
             let _this = $(this);
@@ -44,6 +45,10 @@ $(function() {
             return;
         }
 
+        doPlay(path);
+    }
+
+    function doPlay(path) {
         createjs.Sound.play(path, {
             interrupt: createjs.Sound.INTERRUPT_ANY,
             volume: 1

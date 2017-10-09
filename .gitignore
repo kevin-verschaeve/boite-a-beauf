@@ -2,6 +2,5 @@
 /public/bundles
 /public/sounds/played.txt
 vendor
-data/*
-!data/.gitkeep
 .env
+parameters.yaml
