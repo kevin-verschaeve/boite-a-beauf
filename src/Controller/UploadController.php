@@ -3,7 +3,10 @@
 namespace BAB\Controller;
 
 use BAB\Builder\SoundBuilder;
+use BAB\Manager\SoundManager;
+use BAB\Model\Sound;
 use BAB\Service\Finder;
+use BAB\Service\Utils;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -11,20 +14,22 @@ use Symfony\Component\HttpFoundation\Request;
 
 class UploadController
 {
-    /** @var Finder */
-    private $finder;
+    const RECORDS_DIR = '/sounds/records';
 
-    /** @var SoundBuilder */
-    private $soundBuilder;
+    /** @var SoundManager*/
+    private $soundManager;
 
     /** @var \Twig_Environment */
     private $twig;
 
-    public function __construct(Finder $finder, SoundBuilder $soundBuilder, \Twig_Environment $twig)
+    /** @var string */
+    private $publicPath;
+
+    public function __construct(SoundManager $soundManager, \Twig_Environment $twig, string $publicPath)
     {
-        $this->finder = $finder;
-        $this->soundBuilder = $soundBuilder;
+        $this->soundManager = $soundManager;
         $this->twig = $twig;
+        $this->publicPath = $publicPath;
     }
 
     public function __invoke(Request $request)
@@ -37,13 +42,20 @@ class UploadController
         }
 
         try {
-            $new = $file->move($this->finder->getRecordsSoundsPath(), $file->getClientOriginalName());
+            $new = $file->move($this->publicPath.self::RECORDS_DIR, $file->getClientOriginalName());
+
+            $sound = new Sound();
+            $sound->label = $new->getBasename('.'.$new->getExtension());
+            $sound->publicPath = self::RECORDS_DIR.'/'.$new->getBasename();
+            $sound->isRecord = true;
+
+            $this->soundManager->insert($sound);
 
             return new JsonResponse([
                 'success' => true,
                 'message' => 'Fichier uploadé !',
                 'html' => $this->twig->render('upload/sound_button.html.twig', [
-                    'sound' => $this->soundBuilder->buildSound($new->getRealPath())->get(),
+                    'sound' => $sound,
                 ]),
             ]);
         } catch (FileException $e) {
