@@ -17,11 +17,13 @@ class SoundManager
 
     public function findAll(bool $onlyEnabled = true)
     {
-        $sql = 'SELECT id, label, publicPath, isRecord FROM sound';
+        $sql = 'SELECT id, label, publicPath, isRecord FROM sound ';
 
         if (true === $onlyEnabled) {
-            $sql .= ' WHERE isEnabled = 1;';
+            $sql .= 'WHERE isEnabled = 1 ';
         }
+
+        $sql .= 'ORDER BY label ASC;';
 
         return $this->manager->query($sql, [], Sound::class);
     }
