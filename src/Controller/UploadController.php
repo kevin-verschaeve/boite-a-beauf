@@ -2,11 +2,7 @@
 
 namespace BAB\Controller;
 
-use BAB\Builder\SoundBuilder;
-use BAB\Manager\SoundManager;
-use BAB\Model\Sound;
-use BAB\Service\Finder;
-use BAB\Service\Utils;
+use BAB\Uploader\SoundUploader;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -14,22 +10,16 @@ use Symfony\Component\HttpFoundation\Request;
 
 class UploadController
 {
-    const RECORDS_DIR = '/sounds/records';
-
-    /** @var SoundManager*/
-    private $soundManager;
-
     /** @var \Twig_Environment */
     private $twig;
 
-    /** @var string */
-    private $publicPath;
+    /** @var SoundUploader */
+    private $soundUploader;
 
-    public function __construct(SoundManager $soundManager, \Twig_Environment $twig, string $publicPath)
+    public function __construct(\Twig_Environment $twig, SoundUploader $soundUploader)
     {
-        $this->soundManager = $soundManager;
         $this->twig = $twig;
-        $this->publicPath = $publicPath;
+        $this->soundUploader = $soundUploader;
     }
 
     public function __invoke(Request $request)
@@ -42,14 +32,7 @@ class UploadController
         }
 
         try {
-            $new = $file->move($this->publicPath.self::RECORDS_DIR, $file->getClientOriginalName());
-
-            $sound = new Sound();
-            $sound->label = $new->getBasename('.'.$new->getExtension());
-            $sound->publicPath = self::RECORDS_DIR.'/'.$new->getBasename();
-            $sound->isRecord = true;
-
-            $this->soundManager->insert($sound);
+            $sound = $this->soundUploader->upload($file);
 
             return new JsonResponse([
                 'success' => true,

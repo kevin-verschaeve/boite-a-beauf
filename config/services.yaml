@@ -17,13 +17,9 @@ services:
         $command: '%command%'
         $maxPlayed: '%max_played%'
     BAB\Manager\SqliteManager: ['%dsn%']
-
+    BAB\Uploader\SoundUploader:
+        $publicPath: '%public_path%'
 
     BAB\Controller\:
         resource: '../src/Controller'
-        tags: ['controller.service_arguments']
-
-    BAB\Controller\UploadController:
-        arguments:
-            $publicPath: '%public_path%'
         tags: ['controller.service_arguments']

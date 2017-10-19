@@ -3,8 +3,6 @@
 namespace BAB\Controller;
 
 use BAB\Manager\SoundManager;
-use BAB\Model\Sound;
-use BAB\Service\Finder;
 use Symfony\Component\HttpFoundation\Response;
 
 class DefaultController
