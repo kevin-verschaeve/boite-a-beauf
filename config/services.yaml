@@ -1,6 +1,6 @@
 parameters:
     max_played: 50
-    allowed_formats: ['mp3', 'wav', 'ogg']
+    public_path: '%kernel.project_dir%/public'
 
 services:
     _defaults:
@@ -12,12 +12,13 @@ services:
         resource: '../src/*'
         exclude: '../src/{Entity,Migrations,Model,Repository,Tests}'
 
-    BAB\Service\Utils: ['%kernel.project_dir%']
-    BAB\Service\Finder:
-        $allowedFormats: '%allowed_formats%'
     BAB\Service\Player:
+        $publicPath: '%public_path%'
         $command: '%command%'
         $maxPlayed: '%max_played%'
+    BAB\Manager\SqliteManager: ['%dsn%']
+    BAB\Uploader\SoundUploader:
+        $publicPath: '%public_path%'
 
     BAB\Controller\:
         resource: '../src/Controller'

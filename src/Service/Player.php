@@ -2,13 +2,21 @@
 
 namespace BAB\Service;
 
+use BAB\Manager\PlayedManager;
+use BAB\Manager\SoundManager;
 use BAB\Model\Sound;
 use Symfony\Component\Process\Process;
 
 class Player
 {
-    /** @var Finder */
-    private $finder;
+    /** @var SoundManager */
+    private $soundManager;
+
+    /** @var PlayedManager */
+    private $playedManager;
+
+    /** @var string */
+    private $publicPath;
 
     /** @var string */
     private $command;
@@ -16,39 +24,43 @@ class Player
     /** @var int */
     private $maxPlayed;
 
-    public function __construct(Finder $finder, string $command, int $maxPlayed)
+    public function __construct(SoundManager $soundManager, PlayedManager $playedManager, string $publicPath, string $command, int $maxPlayed)
     {
-        $this->finder = $finder;
+        $this->soundManager = $soundManager;
+        $this->playedManager = $playedManager;
+        $this->publicPath = $publicPath;
         $this->command = $command;
         $this->maxPlayed = $maxPlayed;
     }
 
     public function playRandom()
     {
-        return $this->playSound($this->finder->findRandomSound());
+        return $this->playSound($this->soundManager->findRandom());
     }
 
     public function playNamed(string $soundNamePart)
     {
-        return $this->playSound($this->finder->findNamedSound($soundNamePart));
+        return $this->playSound($this->soundManager->findOneLike($soundNamePart));
     }
 
     private function playSound(Sound $sound)
     {
-        $process = new Process(sprintf('%s %s', $this->command, $sound->path));
+        $path = $this->publicPath.$sound->publicPath;
+
+        $process = new Process(sprintf('%s %s', $this->command, $path));
         $process->run();
 
         $this->addToPlayed($sound);
 
-        return $sound;
+        return $path;
     }
 
     private function addToPlayed(Sound $sound)
     {
-        $played = file($this->finder->getPlayedSoundsPath(), FILE_IGNORE_NEW_LINES);
-        $played = array_slice($played, -$this->maxPlayed + 1);
-        $played[] = $sound->path;
+        if ($this->playedManager->countPlayed() > $this->maxPlayed) {
+            $this->playedManager->removeLast();
+        }
 
-        file_put_contents($this->finder->getPlayedSoundsPath(), implode("\n", $played));
+        $this->playedManager->insert($sound);
     }
 }

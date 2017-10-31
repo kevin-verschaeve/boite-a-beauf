@@ -33,6 +33,6 @@ class PlaySoundCommand extends Command
         $sound = $input->getArgument('sound');
         $played = null === $sound ? $this->player->playRandom() : $this->player->playNamed($sound);
 
-        $output->writeln('<info>Played "'.$played->path.'"</info>');
+        $output->writeln('<info>Played "'.$played.'"</info>');
     }
 }

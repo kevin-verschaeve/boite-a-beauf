@@ -4,8 +4,8 @@ namespace BAB\Model;
 
 class Sound
 {
-    /** @var string Full path of the sound */
-    public $path;
+    /** @var int */
+    public $id;
 
     /** @var string Public path of the sound */
     public $publicPath;
@@ -13,8 +13,12 @@ class Sound
     /** @var string Label displayed in front */
     public $label;
 
-    public function __construct(string $path)
-    {
-        $this->path = $path;
-    }
+    /** @var boolean Is it a recorded sound ? */
+    public $isRecord = false;
+
+    /** @var \DateTime */
+    public $createdAt;
+
+    /** @var bool Is the sound enabled ? */
+    public $isEnabled = true;
 }
