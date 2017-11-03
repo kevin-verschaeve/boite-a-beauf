@@ -56,11 +56,13 @@ class SoundManager
     {
         $sql = 'INSERT INTO sound (`label`, `publicPath`, `createdAt`, `isRecord`) VALUES (:label, :publicPath, :createdAt, :isRecord);';
 
+        $createdAt = $sound->createdAt ?? new \DateTime();
+
         return $this->manager->insert($sql, [
             'label' => $sound->label,
             'publicPath' => $sound->publicPath,
             'isRecord' => $sound->isRecord,
-            'createdAt' => (new \DateTime())->format('Y-m-d H:i:s'),
+            'createdAt' => $createdAt->format('Y-m-d H:i:s'),
         ]);
     }
 }

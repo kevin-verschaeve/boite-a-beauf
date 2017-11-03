@@ -19,6 +19,8 @@ services:
     BAB\Manager\SqliteManager: ['%dsn%']
     BAB\Uploader\SoundUploader:
         $publicPath: '%public_path%'
+    BAB\Command\UpdateDatabaseCommand:
+        $publicPath: '%public_path%'
 
     BAB\Controller\:
         resource: '../src/Controller'
