@@ -1,9 +1,9 @@
 index:
     path: /
-    defaults: { _controller: 'BAB\Controller\DefaultController' }
+    controller: 'BAB\Controller\DefaultController'
 
 upload:
     path: /upload
-    defaults: { _controller: 'BAB\Controller\UploadController' }
+    controller: 'BAB\Controller\UploadController'
     condition: "request.isXmlHttpRequest()"
     methods: ['POST']

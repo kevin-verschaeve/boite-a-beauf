@@ -1,26 +1,25 @@
 parameters:
     max_played: 50
     public_path: '%kernel.project_dir%/public'
+    dsn: '%env(resolve:DATABASE_URL)%'
+    command: '%env(PLAYER_COMMAND)%'
 
 services:
     _defaults:
         autowire: true
         autoconfigure: true
         public: false
+        bind:
+            $publicPath: '%public_path%'
 
     BAB\:
         resource: '../src/*'
         exclude: '../src/{Entity,Migrations,Model,Repository,Tests}'
 
     BAB\Service\Player:
-        $publicPath: '%public_path%'
         $command: '%command%'
         $maxPlayed: '%max_played%'
     BAB\Manager\SqliteManager: ['%dsn%']
-    BAB\Uploader\SoundUploader:
-        $publicPath: '%public_path%'
-    BAB\Command\UpdateDatabaseCommand:
-        $publicPath: '%public_path%'
 
     BAB\Controller\:
         resource: '../src/Controller'

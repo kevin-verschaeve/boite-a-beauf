@@ -1,3 +1,0 @@
-parameters:
-    command: 'omxplayer -o local'
-    dsn: 'sqlite:///%kernel.project_dir%/var/data/bab.sqlite'
