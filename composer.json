@@ -5,6 +5,7 @@
     "require": {
         "php": "^7.1.3",
         "sensio/framework-extra-bundle": "^3.0",
+        "symfony/console": "^3.3",
         "symfony/debug-bundle": "^3.3",
         "symfony/expression-language": "^3.3",
         "symfony/finder": "^3.3",
