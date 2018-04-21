@@ -3,6 +3,7 @@
 namespace BAB\Controller;
 
 use BAB\Manager\SoundManager;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class DefaultController
@@ -19,10 +20,11 @@ class DefaultController
         $this->soundManager = $soundManager;
     }
 
-    public function __invoke()
+    public function __invoke(Request $request)
     {
         return new Response($this->twig->render('default/index.html.twig', [
             'sounds' => $this->soundManager->findAll(),
+            'onPi' => $request->query->getBoolean('pi', false),
         ]));
     }
 }

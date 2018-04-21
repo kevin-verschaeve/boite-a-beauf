@@ -43,6 +43,11 @@ class Player
         return $this->playSound($this->soundManager->findOneLike($soundNamePart));
     }
 
+    public function playExact(string $path)
+    {
+        return $this->playSound($this->soundManager->findOneByPath($path));
+    }
+
     private function playSound(Sound $sound)
     {
         $path = $this->publicPath.$sound->publicPath;

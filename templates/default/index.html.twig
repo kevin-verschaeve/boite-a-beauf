@@ -4,6 +4,7 @@
 {% block content %}
     <div id="top" class="flex flex-wrap px2">
         <div id="upload-message" class="col-12"></div>
+        <div id="result-message" class="col-12"></div>
         <div class="col-6 sm-col-3 md-col-2 flex items-center justify-start">
             <button id="button-random" type="button" class="js-play-random justify-center bold">Random</button>
         </div>
@@ -18,7 +19,7 @@
             <input id="search" class="js-search py2 px1" placeholder="Chercher..." autofocus>
         </div>
     </div>
-    <div id="sound-container" class="flex flex-wrap">
+    <div id="sound-container" class="flex flex-wrap"{{ onPi ? ' data-player-url='~path('play_on_pi') }}>
         {% for sound in sounds %}
             {{ macro.soundButton(sound) }}
         {% endfor %}
@@ -29,7 +30,11 @@
 
 {% block js %}
     <script src="/assets/lib/jquery-3.2.1.min.js"></script>
-    <script src="/assets/lib/soundjs-0.6.2.min.js"></script>
-    <script src="/assets/play.js"></script>
+    {% if onPi %}
+        <script src="/assets/play-on-pi.js"></script>
+    {% else %}
+        <script src="/assets/lib/soundjs-0.6.2.min.js"></script>
+        <script src="/assets/play.js"></script>
+    {% endif %}
     <script src="/assets/record.js"></script>
 {% endblock %}

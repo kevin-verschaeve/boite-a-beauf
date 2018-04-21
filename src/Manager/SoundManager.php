@@ -52,6 +52,19 @@ class SoundManager
         return $result[0];
     }
 
+    public function findOneByPath(string $path)
+    {
+        $sql = "SELECT id, label, publicPath, isRecord FROM sound WHERE publicPath = :path;";
+
+        $result = $this->manager->query($sql, ['path' => $path], Sound::class);
+
+        if (0 === count($result)) {
+            throw new \Exception("$path, Aucun son trouvé.");
+        }
+
+        return $result[0];
+    }
+
     public function insert(Sound $sound): bool
     {
         $sql = 'INSERT INTO sound (`label`, `publicPath`, `createdAt`, `isRecord`) VALUES (:label, :publicPath, :createdAt, :isRecord);';

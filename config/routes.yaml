@@ -7,3 +7,9 @@ upload:
     controller: 'BAB\Controller\UploadController'
     condition: "request.isXmlHttpRequest()"
     methods: ['POST']
+
+play_on_pi:
+    path: /on-pi
+    controller: 'BAB\Controller\PlayerController'
+    condition: "request.isXmlHttpRequest()"
+    methods: ['POST']
