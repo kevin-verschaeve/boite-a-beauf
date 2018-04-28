@@ -17,4 +17,16 @@ $(function() {
             }
         });
     });
+
+    window.notify = function(type, message) {
+        $('#result-message').append($('<p/>', {
+            'class': 'alert ' + type,
+            text: message
+        })).fadeIn(1000).fadeOut({
+            duration: 4000,
+            complete: function() {
+                $('.alert').remove();
+            }
+        });
+    }
 });

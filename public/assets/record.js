@@ -32,8 +32,8 @@ $(function() {
         recorder = new MediaRecorder(stream);
         recorder.addEventListener('dataavailable', doRecord);
     }).catch(function (error) {
-        $('#top').prepend($('<p/>', {
-            'class': 'alert error col-12',
+        $('#sound-container').append($('<p/>', {
+            'class': 'alert error col-12 mx2',
             text: 'Impossible d\'enregistrer un son. Message: "' + error + '"'
         }));
         $('#button-record').remove();
@@ -90,16 +90,7 @@ $(function() {
             cache: false,
             contentType: false
         }).done(function(data) {
-            let cssClass = data.success === true ? 'success' : 'error';
-            $('#upload-message').append($('<p/>', {
-                'class': 'alert ' + cssClass,
-                text: data.message
-            })).fadeIn(1000).fadeOut({
-                duration: 4000,
-                complete: function() {
-                    $('.alert').remove();
-                }
-            });
+            notify(true === data.success ? 'success' : 'error', data.message);
 
             $modal.hide();
             $('#sound-name').val('');
