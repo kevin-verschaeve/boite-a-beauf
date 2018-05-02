@@ -4,3 +4,4 @@
 vendor
 .env
 parameters.yaml
+authorized_ips.json
