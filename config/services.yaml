@@ -24,3 +24,8 @@ services:
     BAB\Controller\:
         resource: '../src/Controller'
         tags: ['controller.service_arguments']
+
+    BAB\Controller\PlayerController:
+        arguments:
+            $secret: '%env(APP_SECRET)%'
+        tags: ['controller.service_arguments']
