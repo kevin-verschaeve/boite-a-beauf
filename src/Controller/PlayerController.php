@@ -14,14 +14,14 @@ class PlayerController
 
         try {
             if (null === $sound) {
-                $player->playRandom();
+                $played = $player->playRandom();
             } else {
-                $player->playExact($sound);
+                $played = $player->playExact($sound);
             }
         } catch (\Exception $e) {
             return new JsonResponse(['success' => false, 'message' => $e->getMessage()]);
         }
 
-        return new JsonResponse(['success' => true]);
+        return new JsonResponse(['success' => true, 'message' => "Played $played"]);
     }
 }
