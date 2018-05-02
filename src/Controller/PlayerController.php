@@ -12,12 +12,12 @@ class PlayerController
     {
         $sound = $request->request->get('sound');
 
-        if (null === $sound) {
-            return new JsonResponse(['success' => false, 'message' => 'No sound provided']);
-        }
-
         try {
-            $player->playExact($sound);
+            if (null === $sound) {
+                $player->playRandom();
+            } else {
+                $player->playExact($sound);
+            }
         } catch (\Exception $e) {
             return new JsonResponse(['success' => false, 'message' => $e->getMessage()]);
         }

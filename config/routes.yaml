@@ -11,5 +11,4 @@ upload:
 play_on_pi:
     path: /on-pi
     controller: 'BAB\Controller\PlayerController'
-    condition: "request.isXmlHttpRequest()"
     methods: ['POST']
