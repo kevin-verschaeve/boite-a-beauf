@@ -2,9 +2,10 @@
 
 namespace BAB\Manager;
 
+use BAB\Exception\NoResultException;
+
 class SqliteManager
 {
-    /** @var \PDO */
     private $pdo;
 
     public function __construct(string $dsn)
@@ -32,7 +33,7 @@ class SqliteManager
         $result = $stmt->fetchObject($className);
 
         if (false === $result) {
-            throw new \Exception('Aucun son trouvé.');
+            throw new NoResultException();
         }
 
         return $result;

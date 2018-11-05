@@ -8,10 +8,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class DefaultController
 {
-    /** @var \Twig_Environment */
     private $twig;
-
-    /** @var SoundManager */
     private $soundManager;
 
     public function __construct(\Twig_Environment $twig, SoundManager $soundManager)

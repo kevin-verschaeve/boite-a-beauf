@@ -3,11 +3,12 @@
 namespace BAB\Manager;
 
 use BAB\Builder\SoundBuilder;
+use BAB\Exception\MultipleResultsException;
+use BAB\Exception\NoResultException;
 use BAB\Model\Sound;
 
 class SoundManager
 {
-    /** @var SqliteManager */
     private $manager;
 
     public function __construct(SqliteManager $manager)
@@ -41,12 +42,12 @@ class SoundManager
 
         $result = $this->manager->query($sql, ['part' => "%$part%"], Sound::class);
 
-        if (0 === count($result)) {
-            throw new \Exception("$part, Aucun son trouvé.");
+        if (0 === \count($result)) {
+            throw new NoResultException("$part, Aucun son trouvé.");
         }
 
-        if (count($result) > 1) {
-            throw new \Exception("$part, Plusieurs sons trouvés");
+        if (\count($result) > 1) {
+            throw new MultipleResultsException("$part, Plusieurs sons trouvés");
         }
 
         return $result[0];
@@ -59,7 +60,7 @@ class SoundManager
         $result = $this->manager->query($sql, ['path' => $path], Sound::class);
 
         if (0 === count($result)) {
-            throw new \Exception("$path, Aucun son trouvé.");
+            throw new NoResultException("$path, Aucun son trouvé.");
         }
 
         return $result[0];

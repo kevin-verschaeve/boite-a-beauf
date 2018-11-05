@@ -8,12 +8,9 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class SoundUploader
 {
-    const RECORDS_DIR = '/sounds/records';
+    private const RECORDS_DIR = '/sounds/records';
 
-    /** @var SoundManager */
     private $soundManager;
-
-    /** @var string */
     private $publicPath;
 
     public function __construct(SoundManager $soundManager, string $publicPath)

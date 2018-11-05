@@ -12,10 +12,8 @@ use Symfony\Component\Finder\Finder;
 
 class UpdateDatabaseCommand extends Command
 {
-    /** @var SoundManager */
     private $soundManager;
 
-    /** @var string */
     private $publicPath;
 
     public function __construct(SoundManager $soundManager, string $publicPath, $name = null)

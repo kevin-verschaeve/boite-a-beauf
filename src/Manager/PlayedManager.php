@@ -6,7 +6,6 @@ use BAB\Model\Sound;
 
 class PlayedManager
 {
-    /** @var SqliteManager */
     private $manager;
 
     public function __construct(SqliteManager $manager)
@@ -14,14 +13,14 @@ class PlayedManager
         $this->manager = $manager;
     }
 
-    public function insert(Sound $sound)
+    public function insert(Sound $sound): bool
     {
         $sql = 'INSERT INTO played (`sound_id`) VALUES (:sound_id);';
 
         return $this->manager->insert($sql, ['sound_id' => $sound->id]);
     }
 
-    public function countPlayed()
+    public function countPlayed(): int
     {
         $sql = 'SELECT COUNT(id) AS count FROM played;';
 

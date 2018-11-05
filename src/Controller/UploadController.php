@@ -10,10 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 class UploadController
 {
-    /** @var \Twig_Environment */
     private $twig;
-
-    /** @var SoundUploader */
     private $soundUploader;
 
     public function __construct(\Twig_Environment $twig, SoundUploader $soundUploader)
