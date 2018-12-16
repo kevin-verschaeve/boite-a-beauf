@@ -1,6 +1,5 @@
 /var
 /public/bundles
-/public/sounds/played.txt
 vendor
 .env
-parameters.yaml
+host.yaml
