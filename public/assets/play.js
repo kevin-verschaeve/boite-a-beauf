@@ -16,6 +16,23 @@ $(function() {
         playSound(sounds[Math.floor(Math.random() * sounds.length)]);
     });
 
+    var cron = false,
+      interval;
+    $('.js-cron').on('click', function(e) {
+        e.preventDefault();
+        if (false === cron) {
+            interval = setInterval(function() {
+                playSound(sounds[Math.floor(Math.random() * sounds.length)]);
+            }, parseInt($(this).data('cron-time')) * 60 * 1000);
+            cron = true;
+            $(this).addClass('cron-enabled').removeClass('cron-disabled');
+        } else {
+            clearInterval(interval);
+            cron = false;
+            $(this).addClass('cron-disabled').removeClass('cron-enabled');
+        }
+    });
+
     function playSound(path) {
         createjs.Sound.stop();
 

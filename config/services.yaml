@@ -3,6 +3,7 @@ parameters:
     public_path: '%kernel.project_dir%/public'
     dsn: '%env(resolve:DATABASE_URL)%'
     command: '%env(PLAYER_COMMAND)%'
+    env(CRON_TIME): 5
 
 services:
     _defaults:

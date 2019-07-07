@@ -92,7 +92,7 @@ h1 {
 
 #button-random {
     padding: 20px 10px;
-    background-color: #b5211b;
+    background-color: #49B5E8;
     color: #FFF;
     box-shadow: 0 6px 0 #4f0002;
     border: none;
@@ -102,6 +102,28 @@ h1 {
     width: 100%;
     font-size: 1rem;
     margin-right: 10px;
+}
+
+#button-cron {
+    padding: 20px 10px;
+    background-color: #1c9904;
+    color: #FFF;
+    box-shadow: 0 6px 0 #4f0002;
+    border: none;
+    cursor: pointer;
+    line-height: 1.5;
+    border-radius: 3px;
+    width: 100%;
+    font-size: 1rem;
+    margin-right: 10px;
+}
+
+#button-cron.cron-enabled {
+    background-color: #1c9904;
+}
+
+#button-cron.cron-disabled {
+    background-color: #b5211b;
 }
 
 #button-record {
