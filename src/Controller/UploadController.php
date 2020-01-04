@@ -7,13 +7,14 @@ use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Twig\Environment;
 
 class UploadController
 {
     private $twig;
     private $soundUploader;
 
-    public function __construct(\Twig_Environment $twig, SoundUploader $soundUploader)
+    public function __construct(Environment $twig, SoundUploader $soundUploader)
     {
         $this->twig = $twig;
         $this->soundUploader = $soundUploader;

@@ -43,7 +43,7 @@ class Player
     {
         $path = $this->publicPath.$sound->publicPath;
 
-        (new Process(sprintf('%s %s', $this->command, $path)))->run();
+        (new Process([$this->command, $path]))->run();
 
         $this->addToPlayed($sound);
 

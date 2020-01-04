@@ -1,15 +1,9 @@
 {
-    "doctrine/event-manager": {
-        "version": "v1.0.0"
-    },
-    "doctrine/persistence": {
-        "version": "v1.1.0"
-    },
-    "doctrine/reflection": {
-        "version": "v1.0.0"
-    },
     "php": {
         "version": "7.3"
+    },
+    "psr/event-dispatcher": {
+        "version": "1.0.0"
     },
     "symfony/cache-contracts": {
         "version": "v2.0.1"
