@@ -19,7 +19,7 @@ class PlayerController
 
     public function __invoke(Request $request, Player $player)
     {
-        if (false === $request->isXmlHttpRequest() && $this->secret !== $request->request->get('secret')) {
+        if (false === $request->isXmlHttpRequest() || $this->secret !== $request->request->get('secret')) {
             throw new NotFoundHttpException();
         }
 
