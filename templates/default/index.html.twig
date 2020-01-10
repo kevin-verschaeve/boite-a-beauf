@@ -1,16 +1,18 @@
 {% extends 'base.html.twig' %}
 {% import 'macro/sound_button.html.twig' as macro %}
 
+{% set time = app.request.query.get('cron')|default(cron_time) %}
+
 {% block content %}
     <div id="top" class="flex flex-wrap px2">
         <div id="upload-message" class="col-12"></div>
         <div id="result-message" class="col-12"></div>
         <div class="col-6 sm-col-3 md-col-3 flex items-center justify-start">
-            <button id="button-random" type="button" class="js-play-random justify-center bold">
-                <img src="assets/images/random.svg" width="20" alt="Random" title="Jouer un son au hasard">
+            <button id="button-random" type="button" class="js-play-random justify-center bold" title="Jouer un son au hasard">
+                <img src="assets/images/random.svg" width="20" alt="Random">
             </button>
-            <button id="button-cron" type="button" class="js-cron justify-center bold cron-disabled" data-cron-time="{{ cron_time }}">
-                <img src="assets/images/history.svg" width="20" alt="Cron" title="Faire tourner automatiquement">
+            <button id="button-cron" type="button" class="js-cron justify-center bold cron-disabled" data-cron-time="{{ time }}" title="Jouer un son toutes les {{ time }} minutes">
+                <img src="assets/images/history.svg" width="20" alt="Cron">
             </button>
             <button id="button-record" type="button" class="justify-center bold">
                 <img src="assets/images/micro.svg" width="20" alt="Enregistrer" title="Enregistrer un son">
