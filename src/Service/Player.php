@@ -15,7 +15,7 @@ class Player
     private $command;
     private $maxPlayed;
 
-    public function __construct(SoundManager $soundManager, PlayedManager $playedManager, string $publicPath, string $command, int $maxPlayed)
+    public function __construct(SoundManager $soundManager, PlayedManager $playedManager, string $publicPath, array $command, int $maxPlayed)
     {
         $this->soundManager = $soundManager;
         $this->playedManager = $playedManager;
@@ -43,7 +43,7 @@ class Player
     {
         $path = $this->publicPath.$sound->publicPath;
 
-        (new Process([$this->command, $path]))->run();
+        (new Process(\array_merge($this->command, [$path])))->run();
 
         $this->addToPlayed($sound);
 

@@ -2,7 +2,7 @@ parameters:
     max_played: 50
     public_path: '%kernel.project_dir%/public'
     dsn: '%env(resolve:DATABASE_URL)%'
-    command: '%env(PLAYER_COMMAND)%'
+    command: '%env(json:PLAYER_COMMAND)%'
     env(CRON_TIME): "5"
 
 services:
